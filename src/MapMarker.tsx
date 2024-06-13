@@ -15,15 +15,16 @@ export interface position {
 
 export const MapMarker = ({ lat, long }: position) => {
   const [infowindowOpen, setInfowindowOpen] = useState(true);
+  const [address, setAddress] = useState("");
   const [markerRef, marker] = useAdvancedMarkerRef();
-
+  GetAddress({ lat, long }).then((res) => setAddress(res));
   return (
     <>
       <AdvancedMarker
         ref={markerRef}
         onClick={() => setInfowindowOpen(true)}
         position={{ lat: lat, lng: long }}
-        title={"Cat."}
+        title={address}
       >
         <Pin background={"#22ccff"} borderColor={"#1e89a1"} scale={1.4}>
           <img src={cat} alt="Logo" width="25" />
@@ -35,8 +36,7 @@ export const MapMarker = ({ lat, long }: position) => {
           maxWidth={200}
           onCloseClick={() => setInfowindowOpen(false)}
         >
-          Latitude: {lat}, Longitude: {long}
-          <GetAddress lat={lat} long={long} />
+          {address}
         </InfoWindow>
       )}
     </>
