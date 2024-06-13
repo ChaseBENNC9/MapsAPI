@@ -1,7 +1,5 @@
 import axios from "axios";
-import React from "react";
 import { position } from "./MapMarker";
-import { c } from "vite/dist/node/types.d-aGj9QkWt";
 const BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json";
 
 const REACT_APP_GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
@@ -13,7 +11,8 @@ export const GetAddress = async ({ lat, long }: position) => {
     );
     return res.data.results[0].formatted_address;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    return "Error retrieving address";
   }
 
 };
