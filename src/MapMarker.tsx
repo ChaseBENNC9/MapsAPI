@@ -7,8 +7,8 @@ import {
 } from "@vis.gl/react-google-maps";
 
 import cat from "./img/SVG/cat.svg";
-
-interface position {
+import { GetAddress } from "./GetAddress";
+export interface position {
   lat: number;
   long: number;
 }
@@ -36,6 +36,7 @@ export const MapMarker = ({ lat, long }: position) => {
           onCloseClick={() => setInfowindowOpen(false)}
         >
           Latitude: {lat}, Longitude: {long}
+          <GetAddress lat={lat} long={long} />
         </InfoWindow>
       )}
     </>
