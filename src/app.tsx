@@ -2,17 +2,12 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 
 import {
-  AdvancedMarker,
   APIProvider,
-  InfoWindow,
   Map,
-  Marker,
-  Pin
 } from '@vis.gl/react-google-maps';
 
-import ControlPanel from './control-panel';
-import {MovingMarker} from './moving-marker';
-import {MarkerWithInfowindow} from './marker-with-infowindow';
+
+import {MapMarker} from './MapMarker';
 
 const API_KEY =
   globalThis.GOOGLE_MAPS_API_KEY ?? (process.env.GOOGLE_MAPS_API_KEY as string);
@@ -44,7 +39,7 @@ const App = () => {
           
 
         {/* simple stateful infowindow */}
-        <MarkerWithInfowindow lat={startLocation.lat} long={startLocation.lng}/>
+        <MapMarker lat={startLocation.lat} long={startLocation.lng}/>
       </Map>
 
     </APIProvider>
