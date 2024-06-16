@@ -9,7 +9,7 @@ export const GetAddress = async ({ lat, long }: position) => {
     const res = await axios.get(
       `${BASE_URL}?latlng=${latlng}&location_type=ROOFTOP&result_type=street_address&key=${REACT_APP_GOOGLE_MAPS_API_KEY}`
     );
-    return res.data.results[0].formatted_address;
+    return`${ res.data.results[0]["address_components"][0]["long_name"]} ${res.data.results[0]["address_components"][1]["short_name"]}`;
   } catch (error) {
     return "Error retrieving address";
   }
