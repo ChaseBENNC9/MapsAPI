@@ -25,9 +25,7 @@ export const MapMarker = ({ lat, long }: position) => {
         position={{ lat: lat, lng: long }}
         title={address}
       >
-        <Pin background={"#22ccff"} borderColor={"#1e89a1"} scale={1.4}>
-          🐈‍⬛
-        </Pin>
+        <p style={{fontSize: "45px" , margin: "0"}}>🐈‍⬛</p>
       </AdvancedMarker>
       {infowindowOpen && (
         <InfoWindow
