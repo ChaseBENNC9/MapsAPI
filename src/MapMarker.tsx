@@ -6,7 +6,6 @@ import {
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
 
-import cat from "./img/SVG/cat.svg";
 import { GetAddress } from "./GetAddress";
 export interface position {
   lat: number;
@@ -27,7 +26,7 @@ export const MapMarker = ({ lat, long }: position) => {
         title={address}
       >
         <Pin background={"#22ccff"} borderColor={"#1e89a1"} scale={1.4}>
-          <img src={cat} alt="Logo" width="25" />
+          🐈‍⬛
         </Pin>
       </AdvancedMarker>
       {infowindowOpen && (
