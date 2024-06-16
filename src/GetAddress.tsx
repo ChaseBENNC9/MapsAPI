@@ -9,9 +9,11 @@ export const GetAddress = async ({ lat, long }: position) => {
     const res = await axios.get(
       `${BASE_URL}?latlng=${latlng}&&key=${REACT_APP_GOOGLE_MAPS_API_KEY}`
     );
+    res.data.results.forEach((element: any) => {
+      console.log(element.formatted_address); 
+    });
     return res.data.results[0].formatted_address;
   } catch (error) {
-    console.error(error);
     return "Error retrieving address";
   }
 

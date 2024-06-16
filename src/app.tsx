@@ -10,7 +10,7 @@ import {
 import {MapMarker} from './MapMarker';
 
 const API_KEY =
-  globalThis.GOOGLE_MAPS_API_KEY ?? (process.env.GOOGLE_MAPS_API_KEY as string);
+  globalThis.REACT_APP_GOOGLE_MAPS_API_KEY ?? (process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string);
 const startLocation = {lat: -45.88155086102622, lng: 170.497564650982};
 const App = () => {
   return (
