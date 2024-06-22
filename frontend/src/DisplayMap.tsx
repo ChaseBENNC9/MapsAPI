@@ -39,7 +39,7 @@ const startLocation = parsePositionString(position.position);
     <div
     style={{
       width: '100%',
-      height: '50%',
+      height: '75%',
       position: 'absolute',
       top: 0,
       left: 0,
@@ -54,6 +54,8 @@ const startLocation = parsePositionString(position.position);
         mapId={'bf51a910020fa25a'}
         defaultZoom={20}
         defaultCenter={startLocation} //-45.88265086102621, 170.497564650982
+        minZoom={15}
+        maxZoom={20}
         gestureHandling={'greedy'}
         disableDefaultUI>
 
