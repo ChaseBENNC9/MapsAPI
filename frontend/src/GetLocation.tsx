@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://192.168.68.65:3001";
+const BASE_URL = "https://mapsbackend.onrender.com";
 
 export const GetLocation = async () => {
 // Get Formatted address from lat and lng
