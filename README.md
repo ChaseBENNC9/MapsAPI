@@ -2,7 +2,7 @@
 [Project](https://github.com/erokasyuart/ES-Final-Project)
 
 
-##Setup
+## Setup
 Using frontend / .env.example  create a new .env file with the api key
 
 ### start backend
