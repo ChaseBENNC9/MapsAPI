@@ -8,48 +8,52 @@ import {
 
 
 import {MapMarker} from './MapMarker';
+import { BrowserRouter as Router, Route, Routes,useLocation } from 'react-router-dom';
+import DisplayMap from './DisplayMap';
 
-const API_KEY =
-  globalThis.REACT_APP_GOOGLE_MAPS_API_KEY ?? (process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string);
-const startLocation = {lat: -45.88155086102622, lng: 170.497564650982};
-const App = () => {
-  return (
-    <div
-    style={{
-      width: '100%',
-      height: '50%',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      background: '#1dbe80',
-      border: '2px solid #0e6443',
-      transform: 'translate(0, 25%)'
-    }}>
+// Custom hook to get query parameters
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
+// Utility function to safely parse a float
+function parseQueryFloat(value: string | null, defaultValue: number): number {
+  if (value === null) {
+    return defaultValue;
+  }
+  const parsed = parseFloat(value);
+  return isNaN(parsed) ? defaultValue : parsed;
+}
 
-    <APIProvider apiKey={API_KEY} libraries={['marker']}>
-      <Map
-        mapId={'bf51a910020fa25a'}
-        defaultZoom={20}
-        defaultCenter={startLocation} //-45.88265086102621, 170.497564650982
-        gestureHandling={'greedy'}
-        disableDefaultUI>
-
+const CoordinatesDisplay: React.FC = () => {
+  const query = useQuery();
+  const defaultLat = 40.7128;  // Default latitude (e.g., New York City)
+  const defaultLong = -74.0060; // Default longitude (e.g., New York City)
   
-          
+  // Log query parameters for debugging
+  console.log('Query params:', query.toString());
 
-        {/* simple stateful infowindow */}
-        <MapMarker lat={startLocation.lat} long={startLocation.lng}/>
-      </Map>
+  // Safely parse query parameters
+  const lat = parseQueryFloat(query.get("lat"), defaultLat);
+  const long = parseQueryFloat(query.get("long"), defaultLong);
 
-    </APIProvider>
+  // Log parsed values for debugging
+  console.log('Parsed lat:', lat, 'Parsed long:', long);
 
-
-
-
-    </div>
+  return (
+    <DisplayMap lat={lat} lng={long}/>
   );
-};
+}
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<CoordinatesDisplay />} />
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;
 

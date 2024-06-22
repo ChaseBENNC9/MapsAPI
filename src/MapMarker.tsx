@@ -9,20 +9,20 @@ import {
 import { GetAddress } from "./GetAddress";
 export interface position {
   lat: number;
-  long: number;
+  lng: number;
 }
 
-export const MapMarker = ({ lat, long }: position) => {
+export const MapMarker = ({ lat, lng }: position) => {
   const [infowindowOpen, setInfowindowOpen] = useState(true);
   const [address, setAddress] = useState("");
   const [markerRef, marker] = useAdvancedMarkerRef();
-  GetAddress({ lat, long }).then((res) => setAddress(res));
+  GetAddress({ lat, lng }).then((res) => setAddress(res));
   return (
     <>
       <AdvancedMarker
         ref={markerRef}
         onClick={() => setInfowindowOpen(true)}
-        position={{ lat: lat, lng: long }}
+        position={{ lat: lat, lng: lng }}
         title={address}
       >
         <p style={{fontSize: "45px" , margin: "0"}}>🐈‍⬛</p>
