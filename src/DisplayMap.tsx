@@ -11,8 +11,30 @@ import {MapMarker} from './MapMarker';
 import { position } from './MapMarker';
 const API_KEY =
   globalThis.REACT_APP_GOOGLE_MAPS_API_KEY ?? (process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string);
-const DisplayMap = (position : position) => {
-const startLocation = position;
+
+
+  function parsePositionString(value: String) : position{
+
+    const s : String = value;
+    try{
+      const myPos : position = {lat: parseFloat(s.split(",")[0]), lng: parseFloat(s.split(",")[1])};
+      return myPos;
+    }
+    catch(e){
+      console.log(e);
+      console.log("Error parsing position string");
+      console.log(s);
+      return {lat: 0, lng: 0};
+    }
+
+      
+    
+  }
+const DisplayMap = (position ) => {
+
+
+
+const startLocation = parsePositionString(position.position);
   return (
     <div
     style={{
