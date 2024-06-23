@@ -6,7 +6,7 @@ const { SerialPort } = require('serialport')
 const { ReadlineParser } = require('@serialport/parser-readline')
 const BASE_URL = 'http://localhost:3002';
 const cors = require('cors');
-const serial = new SerialPort({ path: 'COM3', baudRate: 9600 })
+const serial = new SerialPort({ path: 'COM2', baudRate: 9600 })
 const CLOUD_URL = 'https://mapsbackend.onrender.com';
 app.use(cors());
 
@@ -15,7 +15,7 @@ parser.on('data', (data) => {
     latestData = data; // Update latestData with new data
         // Send data to cloud server
     axios.post(`https://mapsbackend.onrender.com/api/data`, { data })
-    .then(response => console.log('Data sent successfully'))
+    .then(response => console.log('Data sent successfully' ,data))
     .catch(error => console.error('Error sending data:', error));
 });
 app.get('/', (req, res) => {

@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "test": "test",
-    "start": "node server.js"
+    "start": "concurrently \"python -m ble_serial -d 6C:C3:74:FF:01:56 -p COM1\" \"node server.js\""
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +16,8 @@
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
     "serialport": "^12.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
