@@ -8,6 +8,7 @@ const BASE_URL = 'http://localhost:3002';
 const cors = require('cors');
 const serial = new SerialPort({ path: 'COM2', baudRate: 9600 })
 const CLOUD_URL = 'https://mapsbackend.onrender.com';
+let latestData = '';
 app.use(cors());
 
 const parser = serial.pipe(new ReadlineParser({ delimiter: '\r\n' }))
