@@ -1,30 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const fs = require('fs');
 const port = 3002;
-const JSONPath = './historicalData.json';
+
 let latestData = '';
-let dataArray = [];
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(cors());
 
-
-
-
-// Read historical data from JSON file
-if (fs.existsSync(JSONPath)) {
-    try {
-        const data = fs.readFileSync(JSONPath, 'utf-8');
-        dataArray = JSON.parse(data).data || [];
-        latestData = dataArray[0]
-
-    } catch (error) {
-        console.error('Error reading data file:', error);
-    }
-}
 // Endpoint to receive data from the local server
 app.post('/api/data', (req, res) => {
     try {
@@ -38,14 +22,8 @@ app.post('/api/data', (req, res) => {
         }
 
         // Update the latest data
+        latestData = req.body.data;
         console.log('Received data:', latestData);
-
-        dataArray.unshift(req.body.data);
-        console.log('Received data:', req.body.data);
-        console.log('Updated data array:', dataArray);
-
-        // Save the updated array to the file
-        fs.writeFileSync(dataFilePath, JSON.stringify({ data: dataArray }));
 
         // Send success response
         res.sendStatus(200);
